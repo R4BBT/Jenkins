@@ -12,7 +12,7 @@ pipeline {
             echo "This is being built"
         }
         stage ('Finished Building') {
-            echo "We finished building this shit"
+            echo "We finished building this project."
         }
     }
 }
