@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Input') {
+            input {
+                message "Should we continue?"
+                ok "Let's do it!"
+            }
+        }
+    }
+}

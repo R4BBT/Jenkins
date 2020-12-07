@@ -1,0 +1,15 @@
+#Common git instructions
+git config --global user.email "ryanfangk@gmail.com"
+git config --global user.name "Ryan Fang"
+
+echo "# Jenkins" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/R4BBT/Jenkins.git
+git push -u origin main
+                
+git remote add origin https://github.com/R4BBT/Jenkins.git
+git branch -M main
+git push -u origin main
