@@ -2,10 +2,10 @@ pipeline {
     agent {label 'master'}
     stages {
         stage ('Build'){
-            steps{
+            steps {
                 echo "Hello, this is a test!"
             }
-            steps ('Build-2') {
+            steps {
                 echo "This is the second stage!"
             }
         }
