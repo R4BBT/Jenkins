@@ -1,14 +1,12 @@
 pipeline {
     agent {label 'master'}
     stages {
-        stage ('Build'){
-            steps {
-                echo "Hello, this is a test!"
+        stage ('Build Now'){
+            input {
+                
             }
-        }
-        stage ('Build-2') {
             steps {
-                echo "This is the second stage!"
+                echo "This was built just now."
             }
         }
     }
