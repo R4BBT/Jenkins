@@ -11,5 +11,6 @@ sudo apt-get install jenkins -y
 sudo service jenkins start
 sudo service jenkins enable
 sudo service jenkins status
+sleep 5
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
