@@ -1,5 +1,8 @@
 pipeline {
     agent {label 'master'}
+    tools {
+        maven 'apache-maven-3.0.1'
+    }
     stages {
         stage ('Build') {
             echo 'building...'
