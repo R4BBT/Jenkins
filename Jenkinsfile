@@ -1,19 +1,17 @@
 pipeline {
-    agent {label 'master'}
-    tools {
-        maven 'apache-maven-3.0.1'
-    }
+    agent any
     stages {
-        stage ('Build') {
-            echo 'building...'
-        }
-
-        stage ('Test') {
-            echo 'Testing'
-        }
-
-        stage ('Deploy') {
-            echo 'Deploying'
+        stage ('Input') {
+            input {
+                message "Should we continue?"
+                ok "Let's do it!"
+                parameters {
+                    string(name: "person", defaultValue: 'Alice', description: 'what\'s the person\'s name?')
+                }
+            }
+            steps {
+                echo "Hello, ${person}. It is nice to meet you."
+            }
         }
     }
 }

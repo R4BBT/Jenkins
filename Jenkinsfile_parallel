@@ -1,0 +1,40 @@
+pipeline{
+    agent {label 'master'}
+    stages{
+        stage ('non-parallel stage'){
+            agent any
+            steps{
+                echo "hello boys"
+            }
+        }
+
+        stage ('parallel-stage'){
+            parallel {
+                failFast true
+                stage ('Parallel-A'){
+                    agent {label 'branchA'}
+                    steps {
+                        echo 'Pipeline A'
+                    }
+                }
+                stage ('Parallel-B'){
+                    agent {label 'BranchB'}
+                    steps {
+                        echo "Pipeline B"
+                    }
+                }
+
+                stage ('Parallel-C'){
+                    agent{label 'computer-c'}
+                    stages{
+                        stage ('Nested-A'){
+                            steps{
+                                echo "hello"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
