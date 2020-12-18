@@ -1,16 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage ('Input') {
+        stage('Example') {
             input {
                 message "Should we continue?"
-                ok "Let's do it!"
+                ok "Yes, we should."
                 parameters {
-                    string(name: "person", defaultValue: 'Alice', description: 'what\'s the person\'s name?')
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
             }
             steps {
-                echo "Hello, ${person}. It is nice to meet you."
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
     }
