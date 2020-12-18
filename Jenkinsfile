@@ -1,16 +1,54 @@
 pipeline {
     agent any
+    options {
+        quietPeriod(5)
+        retry(0)
+        parallelsAlwaysFailFast()
+    }
+    trigger {
+        cron('*****')
+    }
     stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        stage ('Welcome to the matrix'){
+            matrix {
+                axes{
+                    axis{
+                        name'Operating Systems' 
+                        values 'Linux', 'Windows, 'Mac'
+                    }
+                    axis{
+                        name'browers' 
+                        values 'google chrome', 'firefox', 'safari', edge'
+                    }
                 }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                excludes {
+                    exclude {
+                        axis {
+                            name 'Operating Systems' 
+                            values 'Mac'
+                        }
+                        axis {
+                            name 'browers'
+                            values 'google chrome', 'firefox', 'edge'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'Operating Systems' 
+                            notValues 'Mac'
+                        }
+                        axis {
+                            name 'browers'
+                            notValues 'google chrome', 'firefox', 'edge'
+                    }
+                }
+                stages {
+                    stage ('Company') {
+                        steps {
+                            echo "do builds for ${OPERATING SYSTEMS} - ${BRWOSERS}"
+                        }
+                    }
+                }
             }
         }
     }
