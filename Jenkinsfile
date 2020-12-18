@@ -21,7 +21,7 @@ pipeline {
                         values '4', '5', '6'
                     }
                 excludes {
-                    exclude{
+                    exclude {
                         axis {
                             name 'X'
                             values '1'
@@ -33,7 +33,7 @@ pipeline {
                     }
                 }
                 stage ('matrix build') {
-                    steps{
+                    steps {
                         echo "This is ${X} and ${Y}"
                     }
                 }
