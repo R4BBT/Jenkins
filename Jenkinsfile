@@ -13,12 +13,12 @@ pipeline {
             matrix {
                 axes{
                     axis{
-                        name'Operating Systems' 
-                        values 'Linux', 'Windows, 'Mac'
+                        name 'Operating Systems' 
+                        values 'Linux', 'Windows', 'Mac'
                     }
                     axis{
                         name'browers' 
-                        values 'google chrome', 'firefox', 'safari', edge'
+                        values 'google chrome', 'firefox', 'safari', 'edge'
                     }
                 }
                 excludes {
@@ -35,7 +35,7 @@ pipeline {
                     exclude {
                         axis {
                             name 'Operating Systems' 
-                            notValues 'Mac'
+                            notValues 'Windows'
                         }
                         axis {
                             name 'browers'
