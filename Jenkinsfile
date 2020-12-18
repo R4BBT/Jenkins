@@ -20,6 +20,7 @@ pipeline {
                         name 'Y'
                         values '4', '5', '6'
                     }
+                }
                 excludes {
                     exclude {
                         axis {
@@ -32,12 +33,13 @@ pipeline {
                         }
                     }
                 }
-                stage ('matrix build') {
-                    steps {
-                        echo "This is ${X} and ${Y}!"
+                stages{
+                    stage ('matrix build') {
+                        steps {
+                            echo "This is ${X} and ${Y}!"
+                        }
                     }
-                }
-                }
+                }                
             }   
         }
     }
