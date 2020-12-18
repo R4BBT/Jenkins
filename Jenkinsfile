@@ -1,55 +1,44 @@
 pipeline {
     agent any
-    options {
-        quietPeriod(5)
-        retry(0)
-        parallelsAlwaysFailFast()
-    }
-    trigger {
-        cron('*****')
+    options  {
+        parallelsAlwaysFailFast ()
     }
     stages {
-        stage ('Welcome to the matrix'){
-            matrix {
-                axes{
-                    axis{
-                        name 'Operating Systems' 
-                        values 'Linux', 'Windows', 'Mac'
-                    }
-                    axis{
-                        name'browers' 
-                        values 'google chrome', 'firefox', 'safari', 'edge'
-                    }
-                }
-                excludes {
-                    exclude {
-                        axis {
-                            name 'Operating Systems' 
-                            values 'Mac'
-                        }
-                        axis {
-                            name 'browers'
-                            values 'google chrome', 'firefox', 'edge'
-                        }
-                    }
-                    exclude {
-                        axis {
-                            name 'Operating Systems' 
-                            notValues 'Windows'
-                        }
-                        axis {
-                            name 'browers'
-                            notValues 'google chrome', 'firefox', 'edge'
-                    }
-                }
-                stages {
-                    stage ('Company') {
-                        steps {
-                            echo "do builds for ${OPERATING SYSTEMS} - ${BRWOSERS}"
-                        }
-                    }
-                }
+        stage ('non-pm stage') {
+            steps {
+                echo "This is the non-parallel and non-matrix stage and it has no dependencies"
             }
+        }
+        stage ('matrix') {
+            matrix {
+                axes {
+                    axis {
+                        name 'X'
+                        values '1', '2', '3'
+                    }
+                    axis {
+                        name 'Y'
+                        values '4', '5', '6'
+                    }
+                excludes {
+                    exclude{
+                        axis {
+                            name 'X'
+                            values '1'
+                        }
+                        axis {
+                            name 'Y'
+                            values '4', '5'
+                        }
+                    }
+                }
+                stage ('matrix build') {
+                    steps{
+                        echo "This is ${X} and ${Y}"
+                    }
+                }
+                }
+            }   
         }
     }
 }
