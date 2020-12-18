@@ -34,7 +34,7 @@ pipeline {
                 }
                 stage ('matrix build') {
                     steps {
-                        echo "This is ${X} and ${Y}"
+                        echo "This is ${X} and ${Y}!"
                     }
                 }
                 }
