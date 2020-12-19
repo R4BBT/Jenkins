@@ -1,9 +1,8 @@
 pipeline {
     agent any
-/***    options  {
+    options  {
         parallelsAlwaysFailFast ()
     }
-***/
     stages {
         stage ('non-pm stage') {
             steps {
