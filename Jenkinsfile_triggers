@@ -1,0 +1,12 @@
+pipeline {
+    agent {label 'master'}
+    options {
+        parallelsAlwaysFailFast()
+    }
+    triggers { 
+        cron ('H */12 * * * *')
+    }
+    stages {
+
+    }
+}
