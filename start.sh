@@ -7,10 +7,12 @@ sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install jenkins -y
-sudo service jenkins start
-sudo service jenkins enable
-sudo service jenkins status
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+sudo systemctl status jenkins
 sleep 5
 echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+
 
