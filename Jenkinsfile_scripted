@@ -1,0 +1,17 @@
+node {
+    def gccHome = '/usr/bin/gcc'
+    stage ('Preparation') {
+        git 'https://github.com/linuxacademy/content-pipelines-cje-labs.git'
+    }
+    stage ('Build') {
+        if (isUnix()) {
+            sh "'${gccHome}' --std=c99 -o mario lab1_lab2/mario.c"
+        } else {
+            echo "This isn't Unix, this won't work."
+        }     
+    }
+    stage ('Archive') {
+        archive 'mario'
+    }
+
+}
