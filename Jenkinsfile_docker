@@ -1,13 +1,9 @@
 pipeline{
     agent {
         docker {
-            iamge 'python:alpine'
+            image 'python:alpine'
             args '-u root'
-            pip install -r content-pipelines-cje-labs/lab3_lab4/dog_pics_downloader/requirements.txt
         }
-    }
-    environment{
-        // pass
     }
     stages{
         stage ("Preparing docker environment"){
