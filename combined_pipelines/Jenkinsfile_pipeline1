@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        docker {
+            image 'python:alpine'
+            label 'docker1'
+            args '-u root'
+        }
+    }
+    stages {
+        stage ('Install git'){
+            steps {
+                sh 'apk add git && git clone https://github.com/linuxacademy/content-pipelines-cje-labs.git'
+            }
+        }
+        stage ('Setting up Python'){
+            steps {
+                sh 'pip install -r content-pipelines-cje-labs/lab3_lab4/dog_pics_downloader/requirements.txt'
+            }
+        }
+        stage ('Execute python') {
+            steps {
+                sh 'python content-pipelines-cje-labs/lab3_lab4/dog_pics_downloader/dog_pic_get_class.py'
+            }
+        }
+    }
+    post {
+        always{
+            echo 'The build has completed'
+        }
+        success{
+            echo 'The build has been completed successfully'
+            archiveArtifacts (artifacts: '*.jpg')
+        } 
+        unsuccessful{
+            echo 'The build has been completed unsuccessfully'
+        }
+        cleanup {
+            sh 'rm -rf ./content-pipelines-cje-labs'
+        }
+    }
+}
